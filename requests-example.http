@@ -1,0 +1,80 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:5000
+
+# создание пользователя
+POST {{baseUrl}}/user
+Content-Type: application/json
+
+{
+    "user_name": "Test",
+    "user_email": "test@mail.ru",
+    "user_password": "12345Abc!"
+}
+
+###
+
+# получение пользователя
+GET {{baseUrl}}/user/1
+Content-Type: application/json
+
+###
+
+# обновление пользователя
+PATCH {{baseUrl}}/user/1
+Content-Type: application/json
+
+{
+    "user_name": "Testu",
+    "user_email": "testa@mail.ru",
+    "user_password": "A12345yugAbc!"
+}
+
+###
+
+# удаление пользователя
+DELETE {{baseUrl}}/user/1
+Content-Type: application/json
+
+###
+
+# создание объявления
+
+POST {{baseUrl}}/advertisement
+Content-Type: application/json
+user_email: test@mail.ru
+user_password: 12345Abc!
+
+{
+    "title": "Iphone 15, New",
+    "description": "I will sell the new iphone 15, original, China"
+}
+
+###
+
+# получение объявления
+GET {{baseUrl}}/advertisement/1
+Content-Type: application/json
+
+###
+
+# обновление объявления
+PATCH {{baseUrl}}/advertisement/1
+Content-Type: application/json
+user_email: test@mail.ru
+user_password: 12345Abc!
+
+{
+    "title": "Iphone 14, year of use",
+    "description": "used for a year, in perfect condition"
+}
+
+###
+
+# удаление объявления
+DELETE {{baseUrl}}/advertisement/1
+Content-Type: application/json
+user_email: test@mail.ru
+user_password: 12345Abc!
+
+###

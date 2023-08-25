@@ -1,0 +1,37 @@
+version: '3.9'
+
+volumes:
+  pg_data:
+
+networks:
+  backend:
+
+services:
+  web:
+    build: .
+    ports:
+      - '5000:5000'
+    networks:
+      - backend
+    depends_on:
+      - postgredb
+
+  postgredb:
+    image: 'postgres:12'
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d netology_aiohttp" ]
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - backend
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - pg_data:/var/lib/postgresql/data
+      - ./logs:/var/log
